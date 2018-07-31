@@ -3,8 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 
-//bjc [RequireComponent(typeof(GUITexture))]
-[RequireComponent(typeof(Texture))]
+[RequireComponent(typeof (GUITexture))]
 public class ForcedReset : MonoBehaviour
 {
     private void Update()

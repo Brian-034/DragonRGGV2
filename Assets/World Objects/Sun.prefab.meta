@@ -1,8 +1,10 @@
 fileFormatVersion: 2
-guid: 19d07e989dc5d234b92d56f96ddecc82
+guid: 9397ab81e99634240ac05b446dc6b9ec
+labels:
+- SceneSetup
+timeCreated: 1489243824
+licenseType: Free
 NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 100100000
   userData: 
-  assetBundleName: scenesetup
+  assetBundleName: 
   assetBundleVariant: 

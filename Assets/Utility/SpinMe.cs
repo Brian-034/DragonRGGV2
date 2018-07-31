@@ -8,32 +8,19 @@ public class SpinMe : MonoBehaviour {
 	[SerializeField] float yRotationsPerMinute = 1f;
 	[SerializeField] float zRotationsPerMinute = 1f;
 	
-
 	void Update () {
-      
-        //xDegreesPerFrame = Time.DeltaTime,60,360, xRotationsPerMinute;
-        // degrees frame^-1= seconds frame^-1, seconds minute^-1, degrees Rotation ^-1, rotations minute^-1
+        // xDegreesPerFrame = Time.DeltaTime, 60, 360, xRotationsPerMinute
+        // degrees frame^-1 = seconds frame^-1 / seconds minute^-1 * degrees rotation^-1 * rotation minute^-1
+        // degrees frame^-1 = frame^-1 minute * degrees rotation^-1 * rotation minute^-1
+        // degrees frame^-1 = frame^-1 * degrees
 
-        // degrees frame^-1=seconds frame^-1, seconds minute^-1, (degrees Rotation ^-1 * rotations minute^-1)
-        // degrees frame^-1= seconds frame^-1, seconds minute^-1, (degrees  minute^-1)
-
-        // degrees frame^-1= seconds frame^-1,  (degrees  minute^-1) /(seconds minute^-1)
-        // degrees frame^-1= seconds frame^-1,  (degrees  seconds ^-1 )
-
-        // degrees frame^-1= seconds frame^-1,  (degrees  seconds ^-1 )
-
-        float xDegreesPerFrame = Time.deltaTime * (xRotationsPerMinute * 360) / 60;
-         // degrees frame^-1,  frame^-1 /  minute^-1, degrees Rootation ^-1, rotations minute^-1
-        // degrees frame^-1,  frame^-1 /  minute^-1 * degrees Rootation ^-1, rotations minute^-1
-        // degrees frame^-1,  frame^-1 /  minute^-1 * degrees Rootation ^-1* rotations minute^-1
-
+        float xDegreesPerFrame = Time.deltaTime / 60 * 360 * xRotationsPerMinute;
         transform.RotateAround (transform.position, transform.right, xDegreesPerFrame);
 
-		float yDegreesPerFrame = Time.deltaTime * (yRotationsPerMinute * 360) / 60;
+		float yDegreesPerFrame = Time.deltaTime / 60 * 360 * yRotationsPerMinute;
         transform.RotateAround (transform.position, transform.up, yDegreesPerFrame);
 
-        float zDegreesPerFrame = Time.deltaTime * (zRotationsPerMinute * 360) / 60;
-       
+        float zDegreesPerFrame = Time.deltaTime / 60 * 360 * zRotationsPerMinute;
         transform.RotateAround (transform.position, transform.forward, zDegreesPerFrame);
 	}
 }

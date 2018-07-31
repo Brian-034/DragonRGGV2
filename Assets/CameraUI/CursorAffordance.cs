@@ -4,36 +4,35 @@ using UnityEngine;
 
 [RequireComponent(typeof(CameraRaycaster))]
 public class CursorAffordance : MonoBehaviour {
+
     [SerializeField] Texture2D walkCursor = null;
-    [SerializeField] Texture2D targetCursor = null;
     [SerializeField] Texture2D unknownCursor = null;
-    [SerializeField] Vector2 cursorHotSpot = new Vector2(0, 0);
+    [SerializeField] Texture2D targetCursor = null;
+    [SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 
-   const int  walkableLayer = 9;
-   const int enemyLayer = 10;
+    // TODO solve fight between serialize and const
+    [SerializeField] const int walkableLayerNumber = 9;
+    [SerializeField] const int enemyLayerNumber = 10;
 
-    private CameraRaycaster cameraRaycaster;
+    CameraRaycaster cameraRaycaster;
 
 	// Use this for initialization
 	void Start () {
-        //cameraRaycaster = GameObject.FindObjectOfType<CameraRaycaster>();
         cameraRaycaster = GetComponent<CameraRaycaster>();
-        cameraRaycaster.notifyLayerChangeObservers += OnLayerChanged;
-    }
-	
-	// Update is called once per frame
-	void OnLayerChanged (int newLayer) {
-       // switch (cameraRaycaster.layerHit)
-         switch (newLayer)
-        {           
-            case walkableLayer:
-                Cursor.SetCursor(walkCursor, cursorHotSpot, CursorMode.Auto);
+        cameraRaycaster.notifyLayerChangeObservers += OnLayerChanged; // registering
+	}
+
+    void OnLayerChanged(int newLayer) {
+        switch (newLayer)
+        {
+            case walkableLayerNumber:
+                Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
                 break;
-            case enemyLayer:
-                Cursor.SetCursor(targetCursor, cursorHotSpot, CursorMode.Auto);
+            case enemyLayerNumber:
+                Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
                 break;
             default:
-                Cursor.SetCursor(unknownCursor, cursorHotSpot, CursorMode.Auto);
+                Cursor.SetCursor(unknownCursor, cursorHotspot, CursorMode.Auto);
                 return;
         }
     }

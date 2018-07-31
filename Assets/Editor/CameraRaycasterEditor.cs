@@ -1,6 +1,5 @@
 ﻿using UnityEditor;
 
-
 // TODO consider changing to a property drawer
 [CustomEditor(typeof(CameraRaycaster))]
 public class CameraRaycasterEditor : Editor
@@ -18,24 +17,12 @@ public class CameraRaycasterEditor : Editor
             {
                 BindArraySize();
                 BindArrayElements();
-                //PrintString(); 
             }
             EditorGUI.indentLevel--;
-            
         }
 
         serializedObject.ApplyModifiedProperties(); // De-serialize back to cameraRaycaster (and create undo point)
     }
-
-    //for future ref only
-    //void PrintString()
-    //{
-    //    var currentText = serializedObject.FindProperty("stringToPrint");
-    //    // string currentText = "StringToPrint";
-    //    //string requiredStringToPrint = EditorGUILayout.TextField("StringToPrint: ", currentText);
-    //    currentText.stringValue = EditorGUILayout.TextField("StringToPrint: ", currentText.stringValue);
-
-    //}
 
     void BindArraySize()
     {

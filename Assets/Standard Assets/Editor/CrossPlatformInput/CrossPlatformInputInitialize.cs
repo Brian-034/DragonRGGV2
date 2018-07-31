@@ -32,7 +32,7 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
             {
                 case BuildTarget.Android:
                 case BuildTarget.iOS:
-               //bjc case BuildTarget.PSM: 
+                case BuildTarget.PSM: 
                 case BuildTarget.Tizen: 
                 case BuildTarget.WSAPlayer: 
                     EditorUtility.DisplayDialog("Mobile Input",
@@ -92,7 +92,8 @@ namespace UnityStandardAssets.CrossPlatformInput.Inspector
             {
                 BuildTargetGroup.Android,
                 BuildTargetGroup.iOS,
-            //bjc    BuildTargetGroup.PSM, 
+                BuildTargetGroup.PSM, 
+                BuildTargetGroup.SamsungTV,
                 BuildTargetGroup.Tizen,
                 BuildTargetGroup.WSA 
             };
