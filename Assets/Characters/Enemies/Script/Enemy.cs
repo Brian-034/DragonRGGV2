@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour , IDamageable{
     [SerializeField] GameObject projectileSocket;
     [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
  
-    ThirdPersonCharacter thirdPersonCharacter = null;
+    ThirdPersonCharacter thirdPersonCharacter;
     AICharacterControl aiCharacterControl;
     GameObject player = null;
     bool isAttacking = false;  
