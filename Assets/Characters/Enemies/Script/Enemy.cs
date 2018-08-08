@@ -71,8 +71,10 @@ public class Enemy : MonoBehaviour , IDamageable{
         GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position,Quaternion.identity) as GameObject;
         Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
         projectileComponent.SetDamage(damagePerShot);
+        projectileComponent.SetShooter(gameObject);
+
         Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
-        float projectileSpeed = projectileComponent.projectileSpeed;
+        float projectileSpeed = projectileComponent.GetDefaultLaunchSpeed();
         newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
     }
 

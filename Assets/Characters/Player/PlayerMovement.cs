@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.AI;
+using RPG.CameraUI;
+
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(AICharacterControl))]
@@ -10,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 {
     ThirdPersonCharacter thirdPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
     CameraRaycaster cameraRaycaster = null;
-    Vector3 currentDestination, clickPoint;
     AICharacterControl aiCharacterControl = null;
     GameObject walkTarget = null;
 
@@ -24,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     {
         cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
         thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
-        currentDestination = transform.position;
         aiCharacterControl = GetComponent<AICharacterControl>();
         walkTarget = new GameObject("walkTarget");
 
