@@ -53,16 +53,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\_Core\IDamageable.cs" />
+     <Compile Include="Assets\_Core\SpinMe.cs" />
      <Compile Include="Assets\CameraUI\CameraFollow.cs" />
      <Compile Include="Assets\CameraUI\CameraRaycaster.cs" />
      <Compile Include="Assets\CameraUI\CursorAffordance.cs" />
-     <Compile Include="Assets\CameraUI\PlayerHealthBar.cs" />
      <Compile Include="Assets\Characters\DominantHand.cs" />
-     <Compile Include="Assets\Characters\Enemies\Script\Enemy.cs" />
-     <Compile Include="Assets\Characters\Enemies\Script\EnemyHealthBar.cs" />
-     <Compile Include="Assets\Characters\Enemies\Script\EnemyUI.cs" />
-     <Compile Include="Assets\Characters\Enemies\Script\Projectile.cs" />
+     <Compile Include="Assets\Characters\Enemies\Enemy.cs" />
+     <Compile Include="Assets\Characters\Enemies\EnemyHealthBar.cs" />
+     <Compile Include="Assets\Characters\Enemies\EnemyUI.cs" />
      <Compile Include="Assets\Characters\Player\Player.cs" />
+     <Compile Include="Assets\Characters\Player\PlayerHealthBar.cs" />
      <Compile Include="Assets\Characters\Player\PlayerMovement.cs" />
      <Compile Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Bloom.cs" />
      <Compile Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ImageEffectBase.cs" />
@@ -74,8 +75,7 @@
      <Compile Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ScreenSpaceAmbientObscurance.cs" />
      <Compile Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
      <Compile Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Scripts\Triangles.cs" />
-     <Compile Include="Assets\Utility\IDamageable.cs" />
-     <Compile Include="Assets\Utility\SpinMe.cs" />
+     <Compile Include="Assets\Weapons\Projectile.cs" />
      <Compile Include="Assets\Weapons\Weapon.cs" />
      <None Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\RPG Character Animation Pack\Elements\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

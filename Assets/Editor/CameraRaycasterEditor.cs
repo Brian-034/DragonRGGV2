@@ -1,10 +1,13 @@
 ﻿using UnityEditor;
-using RPG.CameraUI;
+
+namespace RPG.CameraUI
+{
 
 // TODO consider changing to a property drawer
 [CustomEditor(typeof(CameraRaycaster))]
-public class CameraRaycasterEditor : Editor
-{
+
+    public class CameraRaycasterEditor : Editor
+    {
     bool isLayerPrioritiesUnfolded = true; // store the UI state
 
     public override void OnInspectorGUI()
@@ -35,13 +38,14 @@ public class CameraRaycasterEditor : Editor
         }
     }
 
-    void BindArrayElements()
-    {
+        void BindArrayElements()
+        {
         int currentArraySize = serializedObject.FindProperty("layerPriorities.Array.size").intValue;
-        for (int i = 0; i < currentArraySize; i++)
+            for (int i = 0; i < currentArraySize; i++)
         {
             var prop = serializedObject.FindProperty(string.Format("layerPriorities.Array.data[{0}]", i));
             prop.intValue = EditorGUILayout.LayerField(string.Format("Layer {0}:", i), prop.intValue);
+        }
         }
     }
 }

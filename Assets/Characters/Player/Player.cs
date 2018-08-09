@@ -4,77 +4,83 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using RPG.CameraUI;
+using RPG.Core;
+using RPG.Weapons;
 
-public class Player : MonoBehaviour, IDamageable {
-
-    [SerializeField] int enemyLayer = 10;
-    [SerializeField] float maxHealthPoints = 100f;
-    [SerializeField] float damagePerHit = 10f;
-    [SerializeField] float minTimeBetweenHits = .5f;
-    [SerializeField] float maxAttackRange = 2f;
-
-    [SerializeField] Weapon weaponInUse;
-  
-    float currentHealthPoints;
-    CameraRaycaster cameraRaycaster;
-    float lastHitTime = 0f;
-
-    public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; }}
-
-    void Start()
+namespace RPG.Characters
+{
+    public class Player : MonoBehaviour, IDamageable
     {
-        RegisterForMouseClick();
-        currentHealthPoints = maxHealthPoints;
-        PutWeaponInHand();
-    }
 
-    private void PutWeaponInHand()
-    {
-        var weaponPrefab = weaponInUse.GetWeaponPrefab();
-        GameObject dominantHand = RequestDominantHand();
-        var weapon = Instantiate(weaponPrefab,dominantHand.transform);
-        weapon.transform.localPosition = weaponInUse.gripTransform.localPosition;
-        weapon.transform.localRotation = weaponInUse.gripTransform.localRotation;
-    }
+        [SerializeField] int enemyLayer = 10;
+        [SerializeField] float maxHealthPoints = 100f;
+        [SerializeField] float damagePerHit = 10f;
+        [SerializeField] float minTimeBetweenHits = .5f;
+        [SerializeField] float maxAttackRange = 2f;
 
-    private GameObject RequestDominantHand()
-    {
-        var dominantHands = GetComponentsInChildren<DominantHand>();
-        int numberOfDominantHands = dominantHands.Length;
-        Assert.AreNotEqual(numberOfDominantHands, 0, "No Dominant Hand Found");
-        Assert.IsFalse(numberOfDominantHands > 1, "Multiple Dominant Hands found");
-        return dominantHands[0].gameObject;
-    }
+        [SerializeField] Weapon weaponInUse;
 
-    private void RegisterForMouseClick()
-    {
-        cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-        cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
-    }
+        float currentHealthPoints;
+        CameraRaycaster cameraRaycaster;
+        float lastHitTime = 0f;
 
-    void OnMouseClick(RaycastHit raycastHit, int layerHit)
-    {
-        if (layerHit == enemyLayer)
+        public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
+
+        void Start()
         {
-            var enemy = raycastHit.collider.gameObject;
-             
-            // Check enemy is in range
-            if ((enemy.transform.position - transform.position).magnitude > maxAttackRange)
-            {
-                return;
-            }
+            RegisterForMouseClick();
+            currentHealthPoints = maxHealthPoints;
+            PutWeaponInHand();
+        }
 
-            var enemyComponent = enemy.GetComponent<Enemy>();
-            if (Time.time - lastHitTime > minTimeBetweenHits)
+        private void PutWeaponInHand()
+        {
+            var weaponPrefab = weaponInUse.GetWeaponPrefab();
+            GameObject dominantHand = RequestDominantHand();
+            var weapon = Instantiate(weaponPrefab, dominantHand.transform);
+            weapon.transform.localPosition = weaponInUse.gripTransform.localPosition;
+            weapon.transform.localRotation = weaponInUse.gripTransform.localRotation;
+        }
+
+        private GameObject RequestDominantHand()
+        {
+            var dominantHands = GetComponentsInChildren<DominantHand>();
+            int numberOfDominantHands = dominantHands.Length;
+            Assert.AreNotEqual(numberOfDominantHands, 0, "No Dominant Hand Found");
+            Assert.IsFalse(numberOfDominantHands > 1, "Multiple Dominant Hands found");
+            return dominantHands[0].gameObject;
+        }
+
+        private void RegisterForMouseClick()
+        {
+            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+            cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
+        }
+
+        void OnMouseClick(RaycastHit raycastHit, int layerHit)
+        {
+            if (layerHit == enemyLayer)
             {
-                enemyComponent.TakeDamage(damagePerHit);
-                lastHitTime = Time.time;
+                var enemy = raycastHit.collider.gameObject;
+
+                // Check enemy is in range
+                if ((enemy.transform.position - transform.position).magnitude > maxAttackRange)
+                {
+                    return;
+                }
+
+                var enemyComponent = enemy.GetComponent<Enemy>();
+                if (Time.time - lastHitTime > minTimeBetweenHits)
+                {
+                    enemyComponent.TakeDamage(damagePerHit);
+                    lastHitTime = Time.time;
+                }
             }
         }
-    }
 
-    public void TakeDamage(float damage)
-    {
-        currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        public void TakeDamage(float damage)
+        {
+            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        }
     }
 }

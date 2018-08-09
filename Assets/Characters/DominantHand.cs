@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DominantHand : MonoBehaviour {
+namespace RPG.Characters
+{
+    public class DominantHand : MonoBehaviour
+    {
 
-	// Add to dominant hand in character prefab
+        // Add to dominant hand in character prefab
+    }
 }

@@ -6,6 +6,7 @@ namespace RPG.CameraUI
 {
 
     [RequireComponent(typeof(CameraRaycaster))]
+
     public class CursorAffordance : MonoBehaviour {
 
         [SerializeField] Texture2D walkCursor = null;
